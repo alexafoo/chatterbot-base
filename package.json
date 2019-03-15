@@ -1,0 +1,22 @@
+{
+  "name": "483-chatbot",
+  "version": "1.0.0",
+  "main": "example.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexafoo/483-chatbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexafoo/483-chatbot/issues"
+  },
+  "homepage": "https://github.com/alexafoo/483-chatbot#readme",
+  "description": "",
+  "dependencies": {
+    "chatterbot": "^1.0.0"
+  }
+}
