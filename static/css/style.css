@@ -1,0 +1,88 @@
+/* === COLOR VARIABLES ===*/
+/* PENN STATE */
+/* ====================== COMPONENTS ==============*/
+body {
+  background-color: #6C88B7;
+}
+body #chatbot-container {
+  width: 90%;
+  margin: auto auto 2vh;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+body #chatbot-container .header-text {
+  background-color: #4052B6;
+  color: #FFFFFF;
+  margin-top: 20px;
+  padding: 4%;
+  border-radius: 7px 7px 0px 0px;
+  /* TL TR BR BL*/
+}
+body #chatbot-container .chat-background {
+  display: block;
+  height: 450px;
+  background-color: #F5F8FB;
+}
+body #chatbot-container .chatlog {
+  width: 100%;
+  height: 100%;
+  padding: 20px 0px 20px 20px;
+  /*T R B L*/
+}
+body #chatbot-container .bot-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: inline-block;
+}
+body #chatbot-container .bot-message {
+  background-color: #FFFFFF;
+  padding: 15px;
+  margin: 0px 0px 20px 20px;
+  /*T R B L*/
+  font-size: 18px;
+  border-radius: 15px 15px 15px 0px;
+  /* TL TR BR BL*/
+  box-shadow: 1px 3px 1px 0 rgba(0, 0, 0, 0.19);
+  display: inline-block;
+}
+body #chatbot-container .user {
+  float: right;
+}
+body #chatbot-container .user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0px 20px 0px 0px;
+  /*T R B L*/
+}
+body #chatbot-container .user-message {
+  background-color: #FFFFFF;
+  padding: 15px;
+  margin: 0px 20px 20px 0px;
+  /*T R B L*/
+  font-size: 18px;
+  border-radius: 15px 15px 0px 15px;
+  /* TL TR BR BL*/
+  box-shadow: 1px 3px 1px 0 rgba(0, 0, 0, 0.19);
+  display: inline-block;
+}
+body #chatbot-container .text-entry {
+  background-color: #FFFFFF;
+  color: #CBCED5;
+  padding: 3%;
+  border-radius: 0px 0px 7px 7px;
+  /* TL TR BR BL*/
+}
+body #chatbot-container .enter-button {
+  background-color: #FFFFFF;
+  color: #CBCED5;
+  padding: 3%;
+  border-radius: 0px 0px 7px 7px;
+  /* TL TR BR BL*/
+}
+body #chatbot-container .clearfix {
+  clear: both;
+}
+
+/*# sourceMappingURL=style.css.map */
