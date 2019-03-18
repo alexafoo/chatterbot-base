@@ -7,7 +7,7 @@ socketio = SocketIO(app)
 
 #default page
 @app.route("/")
-def home():
+def sessions():
     return render_template("index.html");
 
 #msg received
