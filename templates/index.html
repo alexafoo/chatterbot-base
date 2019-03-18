@@ -22,6 +22,10 @@
 				integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 				crossorigin="anonymous"></script>
 
+		<!-- jquery & socket -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+
 	</head>
 
 	<body>
@@ -45,13 +49,45 @@
 				</div>
 				</div>
 				<!-- text entry -->
-				<div class="text-entry">Type a message...</div>
+				<div class="text-entry">
 					<form action="/home" method="post">
-					<input type="text" name="text_data">
+					<input type="text" class="message" placeholder ="Type a message...">
   					<input type="submit" value="submit">
 					</form>
+					</div>
 				</div>
 			</div>
 		</section>
+
+		<!-- test message holder -->
+		<div class="message_holder"></div>
+	<!-- javascript -->
+	<script type="text/javascript">
+      var socket = io.connect('http://' + document.domain + ':' + location.port);
+      socket.on( 'connect', function() {
+        socket.emit( 'my event', {
+          data: 'User Connected'
+        } )
+        var form = $( 'form' ).on( 'submit', function( e ) {
+          e.preventDefault()
+          let user_input = $( 'input.message' ).val()
+          socket.emit( 'my event', {
+            message : user_input
+          } )
+          $( 'input.message' ).val( '' ).focus()
+        } )
+      } )
+
+	  <!-- rendering message on html -->
+      socket.on( 'my response', function( msg ) {
+        console.log( msg )
+          $( 'h3' ).remove()
+          $( 'div.message_holder' ).append( '<div><b style="color: #000">'+msg.message+'</div>' )
+      })
+    </script>
+
+
+
+
 	</body>
 </html>
