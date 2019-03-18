@@ -29,7 +29,7 @@ c = conn.cursor()
 var1=input()
 var2=input()
 
-c.execute("INSERT INTO cases1 VALUES(?,?)", (var1, var2))
+c.execute("INSERT INTO cases1 VALUES(%?,?)", (var1, var2))
 conn.commit()
 
 print('Type something to begin...')
