@@ -24,7 +24,9 @@ while True:
     try:
         user_input = input()
 
-        if user_input == "a":
+        if user_input == "exit":
+            bot_response = "see ya!"
+            print(bot_response)
             break
         else:
             bot_response = bot.get_response(user_input)
