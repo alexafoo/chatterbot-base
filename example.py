@@ -46,16 +46,22 @@ while True:
         user_input = input()
 
         if user_input != 'quit':
-            c.execute("select answers from cases1 where questions='%s'"%user_input)
-            results = c.fetchone()
-            almost=(str(results))
-            print(almost[2:-3])
+            c.execute("select questions from cases1 where questions='%s'"%user_input)
+            res = c.fetchall()
+            res1=(str(res))
+            res1 = res1[3:-4]
+            if user_input != 'quit' and user_input!= res1:
+                print(res1)
+                print("Sorry,I don't understand")
+            else :
+                c.execute("select answers from cases1 where questions='%s'"%user_input)
+                results = c.fetchone()
+                almost=(str(results))
+                print(almost[2:-3])
         elif user_input == 'quit':
             print("See ya")
             break
-        elif user_input != 'quit' and c.execute("select answers from cases1 where questions='%s'" % user_input):
-            print("Sorry,I don't understand")
-            break
+
 
 
 
