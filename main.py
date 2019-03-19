@@ -24,7 +24,7 @@ def handle_my_custom_event(json, methods=['GET', 'POST']):
 #submit chat
 @app.route('/submit', methods = ['POST'])
 def submit():
-    text_data = request.form['text']
+    text_data = request.form['message']
     print("The text is '" + text_data + "'")
     return redirect('/');
 
