@@ -1,5 +1,8 @@
 import sqlite3
 from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
+import logging
+
 
 # Uncomment the following lines to enable verbose logging
 # import logging
@@ -35,22 +38,37 @@ if input()!= 'n':
     c.execute("INSERT INTO cases1 VALUES(?,?)", (var1, var2))
     conn.commit()
 
-print('Type something to begin...')
+print('Type your question here, type (quit) to end the conversation')
 botName = "I don't have a name yet"
 # The following loop will execute each time the user enters input
 while True:
     try:
         user_input = input()
 
+        if user_input != 'quit':
+            c.execute("select questions from cases1 where questions='%s'"%user_input)
+            res = c.fetchall()
+            res1=(str(res))
+            res1 = res1[3:-4]
+            if user_input != 'quit' and user_input!= res1:
+                print(res1)
+                print("Sorry,I don't understand")
+            else :
+                c.execute("select answers from cases1 where questions='%s'"%user_input)
+                results = c.fetchone()
+                almost=(str(results))
+                print(almost[2:-3])
+        elif user_input == 'quit':
+            print("See ya")
+            break
 
-        bot_response = "see ya!"
-        c.execute("select answers from cases1 where questions='%s'"%user_input)
-   #     sql_parameterized_query = """select answers from cases where questions = %s """
-   #     c.execute(sql_parameterized_query, user_input)
-        results = c.fetchone()
-        almost=(str(results))
-        print(almost[2:-3])
-        print  (bot_response)
+
+
+
+
+
+
+
 
      #   elif user_input == c.execute("select * from cases where questions=: user_input()", {botName: "select * from cases where answers"}):
 
@@ -62,6 +80,23 @@ while True:
        #     bot_response = bot.get_response(user_input)
 
        # print(bot_response)
+
+
     # Press ctrl-c or ctrl-d on the keyboard to exit
     except (KeyboardInterrupt, EOFError, SystemExit,):
         break
+
+#logging.basicConfig(level=logging.INFO)
+
+#chatbot = ChatBot('Example Bot')
+
+# Start by training our bot with the ChatterBot corpus data
+#trainer = ChatterBotCorpusTrainer(chatbot)
+
+#trainer.train(
+#    'chatterbot.corpus.english'
+#)
+
+# Now let's get a response to a greeting
+#response = chatbot.get_response('How are you doing today?')
+#print(response)
