@@ -44,12 +44,12 @@ botName = "I don't have a name yet"
 while True:
     try:
         user_input = input()
-
+        res = c.fetchall()
+        res1 = (str(res))
+        res1 = res1[3:-4]
         if user_input != 'quit':
             c.execute("select questions from cases1 where questions='%s'"%user_input)
-            res = c.fetchall()
-            res1=(str(res))
-            res1 = res1[3:-4]
+
             if user_input != 'quit' and user_input!= res1:
                 print(res1)
                 print("Sorry,I don't understand")
