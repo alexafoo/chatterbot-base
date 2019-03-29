@@ -53,7 +53,7 @@ while True:
             if user_input != 'quit' and user_input!= res1:
                 print(res1)
                 print("Sorry,I don't understand")
-            else :
+            else:
                 c.execute("select answers from cases1 where questions='%s'"%user_input)
                 results = c.fetchone()
                 almost=(str(results))
