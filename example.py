@@ -29,6 +29,12 @@ c = conn.cursor()
 #c.execute('INSERT INTO cases1 VALUES("Hola","Hola back")')
 #c.execute('INSERT INTO cases VALUES("What is your name","IDK")')
 #c.execute('INSERT INTO cases VALUES("exit","See ya back")')
+
+
+
+
+
+
 print("Please enter your question, type 'y' or 'n' to continue")
 if input()!= 'n':
     print("Please enter your question.")
@@ -70,6 +76,9 @@ while True:
 
 
 
+
+
+
      #   elif user_input == c.execute("select * from cases where questions=: user_input()", {botName: "select * from cases where answers"}):
 
     #        print(botName)
@@ -85,6 +94,18 @@ while True:
     # Press ctrl-c or ctrl-d on the keyboard to exit
     except (KeyboardInterrupt, EOFError, SystemExit,):
         break
+
+
+
+
+
+
+def access_db(question):
+    c.execute("select questions from cases1 where questions='%s'"%user_input)
+    res = c.fetchall()
+    res1=(str(res))
+    res1 = res1[3:-4]
+    print(res1)
 
 #logging.basicConfig(level=logging.INFO)
 
