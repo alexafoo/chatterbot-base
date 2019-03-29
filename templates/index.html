@@ -87,6 +87,7 @@
       socket.on( 'my response', function( data ) {
         console.log( data.message )
           $( 'h3' ).remove()
+					$( 'div.message_holder' ).append( '<div><b style="color: blue">'+data.question+'</div>' )
           $( 'div.message_holder' ).append( '<div><b style="color: #000">'+data.message+'</div>' )
       })
     </script>

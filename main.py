@@ -58,7 +58,7 @@ def handle_my_custom_event(text, methods=['GET', 'POST']):
     print(ans_get)
     #socketio.emit('my response', ans_get, callback=messageReceived);
     #socketio.emit('my response', text, callback=messageReceived)
-    socketio.emit('my response',{ 'message': ans_get });
+    socketio.emit('my response',{ 'question': server_inp, 'message': ans_get });
 
 #submit chat
 @app.route('/submit', methods = ['POST'])
