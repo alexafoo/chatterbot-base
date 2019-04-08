@@ -1,3 +1,6 @@
+import gevent.monkey
+gevent.monkey.patch_all()
+
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO
 import sqlite3
@@ -77,4 +80,4 @@ def access_db(question):
     return res1
 
 if __name__ == "__main__":
-    socketio.run(app)
+    socketio.run(app, debug=True)
