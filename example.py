@@ -18,8 +18,8 @@ bot = ChatBot(
         'chatterbot.logic.TimeLogicAdapter',
         'chatterbot.logic.BestMatch'
     ],
-    database_uri='sqlite:///database.db'
-)
+    database_uri='sqlite:///ddh.db')
+
 
 conn = sqlite3.connect('ddh.db')
 c = conn.cursor()
@@ -54,15 +54,17 @@ while True:
         res1 = (str(res))
         res1 = res1[3:-4]
         if user_input != 'quit':
-            c.execute("select questions from cases1 where questions='%s'"%user_input)
-
-            if user_input != 'quit' and user_input!= res1:
+            c.execute("select questions from cases1 where questions='%s'" % user_input)
+            res = c.fetchall()
+            res1 = (str(res))
+            res1 = res1[3:-4]
+            if user_input != 'quit' and user_input != res1:
                 print(res1)
                 print("Sorry,I don't understand")
-            else :
-                c.execute("select answers from cases1 where questions='%s'"%user_input)
+            else:
+                c.execute("select answers from cases1 where questions='%s'" % user_input)
                 results = c.fetchone()
-                almost=(str(results))
+                almost = (str(results))
                 print(almost[2:-3])
         elif user_input == 'quit':
             print("See ya")
