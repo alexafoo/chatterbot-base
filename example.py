@@ -18,8 +18,8 @@ bot = ChatBot(
         'chatterbot.logic.TimeLogicAdapter',
         'chatterbot.logic.BestMatch'
     ],
-    database_uri='sqlite:///database.db'
-)
+    database_uri='sqlite:///ddh.db')
+
 
 conn = sqlite3.connect('ddh.db')
 c = conn.cursor()
@@ -29,14 +29,25 @@ c = conn.cursor()
 #c.execute('INSERT INTO cases1 VALUES("Hola","Hola back")')
 #c.execute('INSERT INTO cases VALUES("What is your name","IDK")')
 #c.execute('INSERT INTO cases VALUES("exit","See ya back")')
-print("Please enter your question, type 'y' or 'n' to continue")
-if input()!= 'n':
-    print("Please enter your question.")
-    var1=input()
-    print("Please enter your answer.")
-    var2=input()
-    c.execute("INSERT INTO cases1 VALUES(?,?)", (var1, var2))
-    conn.commit()
+
+trainer = ChatterBotCorpusTrainer(bot)
+trainer.train(
+    'chatterbot.corpus.english'
+)
+
+def scenarioAdding():
+    print("Please enter your question, type 'y' or 'n' to continue")
+    while input() != 'n':
+        print("Please enter your question.")
+        var1 = input()
+        print("Please enter your answer.")
+        var2 = input()
+        c.execute("INSERT INTO cases1 VALUES(?,?)", (var1, var2))
+        print("Scenario has been added into the database, do you want to continue ?(y/n)")
+        conn.commit()
+
+
+scenarioAdding()
 
 print('Type your question here, type (quit) to end the conversation')
 botName = "I don't have a name yet"
@@ -46,17 +57,17 @@ while True:
         user_input = input()
 
         if user_input != 'quit':
-            c.execute("select questions from cases1 where questions='%s'"%user_input)
+            c.execute("select questions from cases1 where questions='%s'" % user_input)
             res = c.fetchall()
-            res1=(str(res))
+            res1 = (str(res))
             res1 = res1[3:-4]
-            if user_input != 'quit' and user_input!= res1:
+            if user_input != 'quit' and user_input != res1:
                 print(res1)
                 print("Sorry,I don't understand")
             else:
-                c.execute("select answers from cases1 where questions='%s'"%user_input)
+                c.execute("select answers from cases1 where questions='%s'" % user_input)
                 results = c.fetchone()
-                almost=(str(results))
+                almost = (str(results))
                 print(almost[2:-3])
         elif user_input == 'quit':
             print("See ya")
