@@ -91,6 +91,10 @@
 					  '<img src="../static/avatar/img_avatar.png" alt="Avatar" class="bot-avatar"></img>' +
 					  '<div class="bot-message">' + data.message + '</div></div></div>')
 		  }
+
+		  $('.chatlog').stop ().animate ({
+  		scrollTop: $('.chatlog')[0].scrollHeight
+		});
       })
     </script>
 
