@@ -36,14 +36,15 @@
 				<div class="header-text">Chatbot</div>
 				<div class="chat-background">
 				<div class="chatlog">
-					<div class="bot">
+					<div class="row">
+
 						<!-- bot chat bubbles go here -->
-					</div>
 
-					<div class="user">
+
+
 						<!-- user chat bubbles go here -->
-					</div>
 
+				</div>
 				</div>
 				</div>
 				<!-- text entry -->
@@ -79,14 +80,16 @@
       socket.on( 'my response', function( data ) {
         console.log( data.message )
           $( 'h3' ).remove()
+
 		  if(data) {
-			  $('div.bot').append('<img src="../static/avatar/img_avatar.png" alt="Avatar" class="bot-avatar"></img>' +
-					  '<div class="bot-message"><b style="color: blue">' + data.question + '</div>')
+		  $( 'div.chatlog' ).append( '<div class="col"><div class="user"><div class="user-message">'+ data.question +'</div>' +
+				  '<img src="../static/avatar/img_avatar.png" alt="Avatar" class="user-avatar"></img></div></div>' )
 		  }
 
 		  if(data.message) {
-		  $( 'div.user' ).append( '<img src="../static/avatar/img_avatar.png" alt="Avatar" class="user-avatar"></img>' +
-				  '<div class="user-message"><b style="color: #000">'+data.message+'</div>' )
+			  $('div.chatlog').append('<div class="col"><div class="bot">' +
+					  '<img src="../static/avatar/img_avatar.png" alt="Avatar" class="bot-avatar"></img>' +
+					  '<div class="bot-message">' + data.message + '</div></div></div>')
 		  }
       })
     </script>
