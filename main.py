@@ -1,6 +1,5 @@
 import gevent.monkey
 gevent.monkey.patch_all()
-import pyttsx3
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO
 import sqlite3
@@ -28,7 +27,6 @@ bot = ChatBot(
     read_only=True,
     database_uri='sqlite:///Data.db')
 
-engine = pyttsx3.init()
 
 
 app = Flask(__name__)
