@@ -33,7 +33,39 @@ bot = ChatBot(
 
 
 conn = sqlite3.connect('Data.db')
-c = conn.cursor()
+c = conn.execute("SELECT id, text from statement")
+for row in c:
+    print("id =", row[0], "| text =", row[1])
+print("Delete? press d")
+delete = input()
+while delete == 'd':
+    print("Please enter the ID for the question you want to delete")
+    var = input()
+    print("Please enter the ID for the answer you want to delete")
+    var2 = input()
+    c.execute("DELETE from statement where id ='%s'" % var)
+    c.execute("DELETE from statement where id ='%s'" % var2)
+    conn.commit()
+    print("Enter d to delete a new question, enter anything else to skip")
+    delete = input()
+print("Modify? press m")
+modify = input()
+while modify == 'm':
+    print("Please enter the block ID for making changes")
+    var = input()
+    c = conn.execute("SELECT text from statement where id ='%s'" % var)
+    res = c.fetchall()
+    res1 = (str(res))
+    res1 = res1[3:-4]
+    print("You want to change |  %s " % res1, "| into")
+    newI = input()
+    c.execute("Update statement set text = ? where id = ?", (newI, var))
+    conn.commit()
+    print("Enter m to make more modifications, enter anything else to skip")
+    modify = input()
+
+
+
 #if init == 0:
 #c.execute("CREATE TABLE cases1 (questions str, answers str)")
 #else :
