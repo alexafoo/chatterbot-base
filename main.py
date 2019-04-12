@@ -11,27 +11,27 @@ bot = ChatBot(
     'Terminal',
     storage_adapter='chatterbot.storage.SQLStorageAdapter',
     logic_adapters=[
-        'chatterbot.logic.MathematicalEvaluation',
-        'chatterbot.logic.TimeLogicAdapter',
-        'chatterbot.logic.BestMatch'
+        {
+            'import_path': 'chatterbot.logic.BestMatch',
+            'default_response': 'Sorry, I do not understand',
+            'maximum_similarity_threshold': 0.95
+
+
+        },
+        {
+            'import_path': 'chatterbot.logic.BestMatch',
+
+        }
+ #       'chatterbot.logic.TimeLogicAdapter',
+
     ],
-    database_uri='sqlite:///database.db'
-)
+    read_only=True,
+    database_uri='sqlite:///Data.db')
+
 
 conn = sqlite3.connect('ddh.db', check_same_thread=False)
 c = conn.cursor()
 
-def access_db(question):
-    print(question)
-    c.execute("select answers from cases1 where questions='%s'" %question)
-    #c.execute("select * from cases1")
-    res = c.fetchall()
-    print(res)
-    res1=(str(res))
-    res1 = res1[3:-4]
-    #print(res1)
-    #print("tt")
-    return res1
 
 
 app = Flask(__name__)
@@ -50,12 +50,12 @@ def messageReceived(methods=['GET', 'POST']):
 @socketio.on('my event')
 def handle_my_custom_event(text, methods=['GET', 'POST']):
     print('received my events_test: ' + str(text))
-    server_inp=text['message']
-    ans_get=access_db(server_inp)
+    server_inp = text['message']
+    ans_get = bot.get_response(server_inp)
     print(ans_get)
     #socketio.emit('my response', ans_get, callback=messageReceived);
     #socketio.emit('my response', text, callback=messageReceived)
-    socketio.emit('my response',{ 'question': server_inp, 'message': ans_get });
+    socketio.emit('my response', {'question': server_inp, 'message': str(ans_get)})
 
 #submit chat
 @app.route('/submit', methods = ['POST'])
@@ -70,14 +70,7 @@ def submit():
 
 # Create a new instance of a ChatBot
 
-def access_db(question):
-    print(question)
-    c.execute("select answers from cases1 where questions='%s'" %question)
-    res = c.fetchall()
-    print(res)
-    res1=(str(res))
-    res1 = res1[3:-4]
-    return res1
+
 
 if __name__ == "__main__":
     socketio.run(app, debug=True)

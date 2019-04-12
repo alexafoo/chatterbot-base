@@ -79,17 +79,6 @@
           $( 'input.message' ).val( '' ).focus()
         } )
       } )
-	   var db = openDatabase('ddh.db', '1.0', 'my first database', 2 * 1024 * 1024);
-       alert(db);
-		db.transaction(function (c) {
-
-			c.executeSql('SELECT * FROM case1', [], function (c, results) {
-				var len = results.rows.length, i;
-				for (i = 0; i < len; i++) {
-					alert("Database is " + results.rows.item(i).text);
-				}
-			});
-		});
 	  <!-- rendering message on html -->
       socket.on( 'my response', function( data ) {
         console.log( data.message )
