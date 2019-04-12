@@ -71,7 +71,7 @@ body #chatbot-container .user-avatar {
   height: 60px;
   border-radius: 50%;
   display: inline-block;
-  /*margin: 10px 20px 0px 0px;*/
+  /*margin: 0px 10px 0px 0px;*/
   /*T R B L*/
 }
 
@@ -105,6 +105,15 @@ body #chatbot-container .enter-button {
 
 body #chatbot-container .clearfix {
   clear: both;
+}
+
+body #text-entry {
+  display:flex;
+  width: 100%;
+}
+
+body input {
+  flex: 1;
 }
 
 /*# sourceMappingURL=style.css.map */
