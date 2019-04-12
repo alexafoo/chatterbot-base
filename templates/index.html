@@ -40,7 +40,7 @@
 						<!-- bot chat bubbles go here -->
 						<div class="bot">
 							<div class="col">
-							<img src="../static/avatar/img_avatar.png" alt="Avatar" class="bot-avatar"></img>
+							<img src="../static/avatar/default_male.png" alt="Avatar" class="bot-avatar"></img>
 							<div class="bot-message"><p>Hi, my name is Chatterbot. Ask me questions :)</p></div>
 						</div>
 
@@ -85,13 +85,13 @@
           $( 'h3' ).remove()
 
 		  if(data) {
-		  $( 'div.chatlog' ).append( '<div class="col"><div class="user"><div class="user-message">'+ data.question +'</div>' +
-				  '<img src="../static/avatar/img_avatar.png" alt="Avatar" class="user-avatar"></img></div></div>' )
+		  $( 'div.chatlog' ).append( '<div class="user"><div class="col"><div class="user-message">'+ data.question +'</div>' +
+				  '<img src="../static/avatar/default_female.png" alt="Avatar" class="user-avatar"></img></div></div>' )
 		  }
 
 		  if(data.message) {
-			  $('div.chatlog').append('<div class="col"><div class="bot">' +
-					  '<img src="../static/avatar/img_avatar.png" alt="Avatar" class="bot-avatar"></img>' +
+			  $('div.chatlog').append('<div class="bot">' +
+					  '<img src="../static/avatar/default_male.png" alt="Avatar" class="bot-avatar"></img>' +
 					  '<div class="bot-message">' + data.message + '</div></div></div>')
 		  }
 
