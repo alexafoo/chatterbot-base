@@ -1,5 +1,6 @@
 import gevent.monkey
 gevent.monkey.patch_all()
+
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO
 import sqlite3
@@ -13,7 +14,7 @@ bot = ChatBot(
         {
             'import_path': 'chatterbot.logic.BestMatch',
             'default_response': 'Sorry, I do not understand',
-            'maximum_similarity_threshold': 0.8
+            'maximum_similarity_threshold': 0.95
 
 
         },
@@ -26,6 +27,9 @@ bot = ChatBot(
     ],
     read_only=True,
     database_uri='sqlite:///Data.db')
+
+
+
 
 
 
@@ -50,9 +54,7 @@ def handle_my_custom_event(text, methods=['GET', 'POST']):
     print(ans_get)
     #socketio.emit('my response', ans_get, callback=messageReceived);
     #socketio.emit('my response', text, callback=messageReceived)
-    socketio.emit('my response', {'question': server_inp, 'message': str(ans_get)})
-    engine.say(str(ans_get))
-
+    socketio.emit('my response', {'question': server_inp, 'message': str(ans_get)});
 
 #submit chat
 @app.route('/submit', methods = ['POST'])
@@ -67,7 +69,14 @@ def submit():
 
 # Create a new instance of a ChatBot
 
-
+#def access_db(question):
+#    print(question)
+#    c.execute("select answers from cases1 where questions='%s'" %question)
+#    res = c.fetchall()
+#    print(res)
+#    res1 = (str(res))
+#    res1 = res1[3:-4]
+#    return res1
 
 if __name__ == "__main__":
     socketio.run(app, debug=True)
