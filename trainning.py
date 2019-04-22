@@ -33,9 +33,11 @@ bot = ChatBot(
 
 
 conn = sqlite3.connect('Data.db')
+# print out the table
 c = conn.execute("SELECT id, text from statement")
 for row in c:
     print("id =", row[0], "| text =", row[1])
+# ask the user for deletion
 print("Delete? press d")
 delete = input()
 while delete == 'd':
@@ -48,6 +50,7 @@ while delete == 'd':
     conn.commit()
     print("Enter d to delete a new question, enter anything else to skip")
     delete = input()
+# ask the user for modification
 print("Modify? press m")
 modify = input()
 while modify == 'm':
