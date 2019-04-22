@@ -1,11 +1,13 @@
 #!/bin/bash
 clear
-echo "test"
-echo "enter the name of the file that you want to create"
-read name
-echo $name
-file="$name.txt"
-touch $file
-echo "enter intro"
-read intro
-echo $intro > $file
+#echo "test"
+#echo "enter the name of the file that you want to create"
+#read name
+#echo $name
+#file="$name.txt"
+#touch $file
+#echo "enter intro"
+#read intro
+#cho $intro > $file
+
+python3 ./trainning.py

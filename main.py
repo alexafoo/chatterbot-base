@@ -29,10 +29,6 @@ bot = ChatBot(
     database_uri='sqlite:///Data.db')
 
 
-
-
-
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'chatbotbeepboop'
 socketio = SocketIO(app)
