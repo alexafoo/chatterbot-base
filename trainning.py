@@ -38,7 +38,7 @@ c = conn.execute("SELECT id, text from statement")
 for row in c:
     print("id =", row[0], "| text =", row[1])
 # ask the user for deletion
-print("Delete? press d")
+print("Press 'd' to delete one of the question, enter anything else to skip this process")
 delete = input()
 while delete == 'd':
     print("Please enter the ID for the question you want to delete")
@@ -48,10 +48,10 @@ while delete == 'd':
     c.execute("DELETE from statement where id ='%s'" % var)
     c.execute("DELETE from statement where id ='%s'" % var2)
     conn.commit()
-    print("Enter d to delete a new question, enter anything else to skip")
+    print("Enter d to delete another question, enter anything else to skip")
     delete = input()
 # ask the user for modification
-print("Modify? press m")
+print("Press 'm' to modify one of the question, enter anything else to skip this process")
 modify = input()
 while modify == 'm':
     print("Please enter the block ID for making changes")
@@ -78,13 +78,13 @@ while modify == 'm':
 
 print('--------------Training--------------')
 trainer = ListTrainer(bot)
-print("How many key questions do we have for this conversation?")
-points = int(input())
-cp = [0 for x in range(points)]
-for x in cp:
-    print(x)
+#print("How many key questions do we have for this conversation?")
+#points = int(input())
+#cp = [0 for x in range(points)]
+#for x in cp:
+#    print(x)
 while True:
-    print("Please enter your question to start, type 'end' to skip")
+    print("Please enter the question you want to add to start, type 'end' to skip")
     question = input()
     if question == 'end':
         break
@@ -95,6 +95,7 @@ while True:
         answer,
     ])
     print("type 'end' to quit, type 'a' if you think another question leads to the same answer")
+    print("type anything else to ")
     checker = input()
     while checker == 'a':
         print("what question do you think have the same answer for ", answer)
@@ -107,7 +108,7 @@ while True:
         checker = input()
     if checker == 'end':
         break
-
+print('-----------------testing-----------------')
 print('Type your question here, type (quit) to end the conversation')
 # The following loop will execute each time the user enters input
 while True:

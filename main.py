@@ -1,6 +1,7 @@
 import gevent.monkey
+import pyttsx3
 gevent.monkey.patch_all()
-
+import os
 from flask import Flask, render_template, request, redirect
 from flask_socketio import SocketIO
 import sqlite3
@@ -32,6 +33,7 @@ bot = ChatBot(
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'chatbotbeepboop'
 socketio = SocketIO(app)
+engine = pyttsx3.init();
 
 #default page
 @app.route("/")
@@ -52,6 +54,8 @@ def handle_my_custom_event(text, methods=['GET', 'POST']):
     #socketio.emit('my response', text, callback=messageReceived)
     socketio.emit('my response', {'question': server_inp, 'message': str(ans_get)});
 
+    engine.say("hello")
+    engine.runAndWait()
 #submit chat
 @app.route('/submit', methods = ['POST'])
 def submit():
