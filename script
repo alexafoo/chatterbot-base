@@ -9,5 +9,10 @@ clear
 #echo "enter intro"
 #read intro
 #cho $intro > $file
-
-python3 ./trainning.py
+pathh=$(pwd)
+echo $pathh
+cd
+echo $pathh
+fin=$pathh/trainning.py
+echo $fin
+python3 $fin

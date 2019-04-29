@@ -14,7 +14,7 @@ bot = ChatBot(
         {
             'import_path': 'chatterbot.logic.BestMatch',
             'default_response': 'Sorry, I do not understand',
-            'maximum_similarity_threshold': 0.95
+            'maximum_similarity_threshold': 0.8
 
 
         },
